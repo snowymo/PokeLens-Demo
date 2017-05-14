@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeLensTango-Demo", "Assembly-CSharp-firstpass.csproj", "{11A580E8-A9CC-AF8D-75D7-18F52835EEA9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeLensTango-Demo", "Assembly-CSharp.csproj", "{9F1A53E2-A5E6-989C-A85F-04C915E9E610}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PokeLensTango-Demo", "Assembly-CSharp-Editor.csproj", "{C274ACAD-FF13-6740-82ED-47309DF4E2BB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{11A580E8-A9CC-AF8D-75D7-18F52835EEA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11A580E8-A9CC-AF8D-75D7-18F52835EEA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11A580E8-A9CC-AF8D-75D7-18F52835EEA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11A580E8-A9CC-AF8D-75D7-18F52835EEA9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F1A53E2-A5E6-989C-A85F-04C915E9E610}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F1A53E2-A5E6-989C-A85F-04C915E9E610}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F1A53E2-A5E6-989C-A85F-04C915E9E610}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F1A53E2-A5E6-989C-A85F-04C915E9E610}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C274ACAD-FF13-6740-82ED-47309DF4E2BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C274ACAD-FF13-6740-82ED-47309DF4E2BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C274ACAD-FF13-6740-82ED-47309DF4E2BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C274ACAD-FF13-6740-82ED-47309DF4E2BB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = Assembly-CSharp.csproj
+	EndGlobalSection
+EndGlobal

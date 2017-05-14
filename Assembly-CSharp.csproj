@@ -6,7 +6,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{D23A1FC0-634E-D633-A529-2635CFF5AC19}</ProjectGuid>
+    <ProjectGuid>{9F1A53E2-A5E6-989C-A85F-04C915E9E610}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -79,6 +79,8 @@
      <Compile Include="Assets\Scripts\UI_View_Collision_Check.cs" />
      <Compile Include="Assets\Scripts\WorldCursor.cs" />
      <Compile Include="Assets\Scripts\stripe_animation.cs" />
+     <Compile Include="Assets\TangoCustomized\FitBoxTango.cs" />
+     <Compile Include="Assets\TangoCustomized\KeyMapping.cs" />
      <Compile Include="Assets\TangoPrefabs\Scripts\ARCameraPostProcess.cs" />
      <Compile Include="Assets\TangoPrefabs\Scripts\TangoARPoseController.cs" />
      <Compile Include="Assets\TangoPrefabs\Scripts\TangoARScreen.cs" />
@@ -209,6 +211,10 @@
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{11A580E8-A9CC-AF8D-75D7-18F52835EEA9}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

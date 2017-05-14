@@ -34,6 +34,7 @@ public class Battle_Manager : MonoBehaviour {
     public float Battle_Timer = 0;
 	public float Switch_Timer = 0;
 	public float End_Timer = 0;
+	[SerializeField]
 	private int Phase_Index = 0;
     public bool Battle_Start = false;
 	public bool Switch_Start = false;
@@ -67,6 +68,8 @@ public class Battle_Manager : MonoBehaviour {
 	public bool general_tap_event = false;
 	public string general_tap_event_tag = "";
 	private bool spawn_ready = false;
+
+	public KeyMapping KeyCtrl;
 
 	// Use this for initialization
 	void Start () {
@@ -221,14 +224,18 @@ public class Battle_Manager : MonoBehaviour {
 
 		if (Phase_Index == 0) {
 
-			if ((general_tap_event || Input.GetKeyDown (KeyCode.I)) && !spawn_ready) {
+			// hehe, step one, press I
+			if ((general_tap_event || Input.GetKeyDown (KeyCode.I) || KeyCtrl.isIPressed) && !spawn_ready) {
 				spawn_ready = true;
 				general_tap_event = false;
 				enemy_pokemon_summon_target.GetComponent<ParticleSystem> ().Stop ();
 				enemy_pokemon_summon_target.transform.GetChild (0).gameObject.SetActive (false);
+				print ("enemy shows up");
 			}
 
-			if (!Battle_Start && (Input.GetKeyDown (KeyCode.P) || general_tap_event)) {
+			// hehe, step two, press P
+			if (!Battle_Start && (Input.GetKeyDown (KeyCode.P) || KeyCtrl.isPPressed || general_tap_event)) {
+				print ("start battle");
 				Start_Battle ();
 				general_tap_event = false;
 			}
@@ -277,11 +284,15 @@ public class Battle_Manager : MonoBehaviour {
 				current_pokeball = null;
 				//returned
 			}
-			if (Input.GetKeyDown (KeyCode.C)) {
+			if (Input.GetKeyDown (KeyCode.C) || KeyCtrl.isCPressed) {
 				Pokeballs[0].transform.GetChild (0).GetComponent<Selection> ().OnSelect ();
+				print ("select pokeball 0");
+				KeyCtrl.isCPressed = false;
 			}
-			if (Input.GetKeyDown (KeyCode.V)) {
+			if (Input.GetKeyDown (KeyCode.V) || KeyCtrl.isVPressed) {
 				Pokeballs[1].transform.GetChild (0).GetComponent<Selection> ().OnSelect ();
+				print ("select pokeball 1");
+				KeyCtrl.isVPressed = false;
 			}
 
 			foreach (GameObject pokeball in Pokeballs) {
@@ -326,9 +337,11 @@ public class Battle_Manager : MonoBehaviour {
 			}
 		}
 		if (Phase_Index == -2) {
-			if (Input.GetKeyDown (KeyCode.O)) {
+			if (Input.GetKeyDown (KeyCode.O) || KeyCtrl.isOPressed) {
 				Vector3 target = new Vector3 (cursor.transform.position.x,cursor.transform.position.y + 0.25f, cursor.transform.position.z);
 				current_Item_Pokeball.GetComponent<Pokeball> ().LaunchAtTarget (target);
+				print ("put target to upper pos and launch it");
+				KeyCtrl.isOPressed = false;
 			}
 
 			if (general_tap_event) {
@@ -383,16 +396,18 @@ public class Battle_Manager : MonoBehaviour {
 
 			current_pokeball.GetComponent<Pokeball> ().Selected_Ready (); //fixes the pokeball animation bug
 
-			if (Input.GetKeyDown (KeyCode.O)) {
+			if (Input.GetKeyDown (KeyCode.O) || KeyCtrl.isOPressed) {
 				current_pokeball.GetComponent<Pokeball> ().LaunchAtTarget (pokemon_summon_target.transform.position);
 				Dialogue_UI.SetActive (true);
 				Dialogue_UI.GetComponent<Dialogue_UI> ().Set_Dialogue_Text ("Go! " + Pokemon_1.GetComponent<Pokemon>().name + "!", 0.75f);
+				print ("press o");
+				KeyCtrl.isOPressed = false;
 			}
 
 
-			if(pokemon_summon_target.GetComponent<Selection>().Check_OnSelected_And_Deselect()) {
+			if(pokemon_summon_target.GetComponent<Selection>().Check_OnSelected_And_Deselect() || KeyCtrl.isOPressed ) {
 				current_pokeball.GetComponent<Pokeball> ().LaunchAtTarget (pokemon_summon_target.transform.position);
-
+				KeyCtrl.isOPressed = false;
 				Dialogue_UI.SetActive (true);
 				Dialogue_UI.GetComponent<Dialogue_UI> ().Set_Dialogue_Text ("Go! " + Pokemon_1.GetComponent<Pokemon>().name + "!", 0.75f);
 			}
@@ -430,14 +445,18 @@ public class Battle_Manager : MonoBehaviour {
 		if (Phase_Index == 2) {
 			Home_UI.GetComponent<Home_Button_UI> ().Enable ();
 			Home_UI.transform.GetChild (0).gameObject.SetActive (true);
-			if (Input.GetKeyDown (KeyCode.K)) {
+			if (Input.GetKeyDown (KeyCode.K) || KeyCtrl.isKPressed) {
 				Moves_UI [4].GetComponent<Selection> ().OnSelect ();
 				Moves_UI [4].GetComponent<Button_push_animation> ().Animate ();
+				print ("press k");
+				KeyCtrl.isKPressed = false;
 			}
 
-			if (Input.GetKeyDown (KeyCode.L)) {
+			if (Input.GetKeyDown (KeyCode.L) || KeyCtrl.isLPressed) {
 				Moves_UI [5].GetComponent<Selection> ().OnSelect ();
 				Moves_UI [5].GetComponent<Button_push_animation> ().Animate ();
+				print ("press l");
+				KeyCtrl.isLPressed = false;
 			}
 
 			if (Moves_UI [4].GetComponent<Selection> ().Check_OnSelected_And_Deselect ()) {
@@ -475,31 +494,41 @@ public class Battle_Manager : MonoBehaviour {
 				}
 			}
 
-			if (Input.GetKeyDown (KeyCode.Space)) {
+			if (Input.GetKeyDown (KeyCode.Space) || KeyCtrl.isSpacePressed) {
 				Home_UI.GetComponent<Selection> ().OnSelect ();
 				Home_UI.GetComponent<Button_push_animation> ().Animate ();
+				KeyCtrl.isSpacePressed = false;
+				print ("home");
 			}
-			if (Input.GetKeyDown (KeyCode.H)) {
+			if (Input.GetKeyDown (KeyCode.H) || KeyCtrl.isHPressed) {
 				Pokemon_1.GetComponent<Pokemon_Stats> ().Add_HP (10);
-
+				KeyCtrl.isHPressed = false;
+				print ("hp + 10");
 			}
-			if (Input.GetKeyDown (KeyCode.E)) {
+			if (Input.GetKeyDown (KeyCode.E) || KeyCtrl.isEPressed) {
 				Moves_UI [0].GetComponent<Selection> ().OnSelect ();
 				Moves_UI [0].GetComponent<Button_push_animation> ().Animate ();
+				KeyCtrl.isEPressed = false;
+				print ("attack 1");
 
 			}
-			if (Input.GetKeyDown (KeyCode.R)) {
+			if (Input.GetKeyDown (KeyCode.R) || KeyCtrl.isRPressed) {
 				Moves_UI [1].GetComponent<Selection> ().OnSelect ();
 				Moves_UI [1].GetComponent<Button_push_animation> ().Animate ();
+				KeyCtrl.isRPressed = false;
+				print ("attack 2");
 			}
 
-			if (Input.GetKeyDown (KeyCode.T)) {
+			if (Input.GetKeyDown (KeyCode.T) || KeyCtrl.isTPressed) {
 				Moves_UI [2].GetComponent<Selection> ().OnSelect ();
 				Moves_UI [2].GetComponent<Button_push_animation> ().Animate ();
+				KeyCtrl.isTPressed = false;
+				print ("attack 3");
 			}
-			if (Input.GetKeyDown (KeyCode.Y)) {
+			if (Input.GetKeyDown (KeyCode.Y) || KeyCtrl.isYPressed) {
 				Moves_UI [3].GetComponent<Selection> ().OnSelect ();
 				Moves_UI [3].GetComponent<Button_push_animation> ().Animate ();
+				print ("attack 4");
 			}
 			//
 			if (!Ready_To_Attack) {
