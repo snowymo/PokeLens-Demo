@@ -8,6 +8,8 @@ public class KeyMapping : MonoBehaviour {
 
 	//public Pokeball[] FocusedObjects;
 
+	public WorldCursor hitInfoGO;
+
 	int stage = 0;
 
 	public bool isIPressed;
@@ -41,6 +43,7 @@ public class KeyMapping : MonoBehaviour {
 		isYPressed = false;
 		isKPressed = false;
 		isLPressed = false;
+
 	}
 	
 	// Update is called once per frame
@@ -60,6 +63,21 @@ public class KeyMapping : MonoBehaviour {
 //			}
 //			Attack1.OnPressed = true;
 //		}
+		if (stage == 3)
+			PokeContinue ();
+		
+		if (Input.GetKeyDown (KeyCode.Alpha1) || Input.GetKeyDown (KeyCode.Joystick1Button7)) {// top button
+			PokeContinue ();
+		} else if (Input.GetKeyDown (KeyCode.Alpha2) ||Input.GetKeyDown (KeyCode.Joystick1Button3)) { // y
+			isYPressed = true;
+		}else if (Input.GetKeyDown (KeyCode.Alpha3) ||Input.GetKeyDown (KeyCode.Joystick1Button5)) { // b
+			isRPressed = true;
+		}else if (Input.GetKeyDown (KeyCode.Alpha4) ||Input.GetKeyDown (KeyCode.Joystick1Button10)) { // a
+			isEPressed = true;
+		}else if (Input.GetKeyDown (KeyCode.Alpha5) ||Input.GetKeyDown (KeyCode.Joystick1Button11)) { // =
+			isTPressed = true;
+		}
+
 	}
 
 	public void KeyPressed(string k){
@@ -116,9 +134,14 @@ public class KeyMapping : MonoBehaviour {
 			break;
 		case 2:
 			// might take gaze into consideration
-			isCPressed = true;
-
-			++stage;
+			if (hitInfoGO.hitName.Equals ("PokeBall_Container_2")) {
+				isVPressed = true;
+				++stage;
+			} else if (hitInfoGO.hitName.Equals ("PokeBall_Container")){
+				
+				isCPressed = true;
+				++stage;
+			}
 			break;
 		case 3:
 		case 5:

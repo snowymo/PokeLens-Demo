@@ -13127,6 +13127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c43e325ebc4c64603a7a88c18bc922fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitInfoGO: {fileID: 2035436356}
   isIPressed: 0
   isOPressed: 0
   isPPressed: 0
@@ -14775,6 +14776,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a80b605309bdd874987c5c65fa5c1cae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitName: 
 --- !u!1 &2059984282
 GameObject:
   m_ObjectHideFlags: 0
